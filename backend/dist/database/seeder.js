@@ -38,10 +38,10 @@ const user_entity_1 = require("../users/entities/user.entity");
 const store_entity_1 = require("../stores/entities/store.entity");
 const rating_entity_1 = require("../ratings/entities/rating.entity");
 const bcrypt = __importStar(require("bcrypt"));
-async function seedDatabase(connection) {
-    const userRepository = connection.getRepository(user_entity_1.User);
-    const storeRepository = connection.getRepository(store_entity_1.Store);
-    const ratingRepository = connection.getRepository(rating_entity_1.Rating);
+async function seedDatabase(dataSource) {
+    const userRepository = dataSource.getRepository(user_entity_1.User);
+    const storeRepository = dataSource.getRepository(store_entity_1.Store);
+    const ratingRepository = dataSource.getRepository(rating_entity_1.Rating);
     const userCount = await userRepository.count();
     if (userCount > 0) {
         console.log('Database already has users. Skipping seeder.');

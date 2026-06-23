@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RolesGuard = void 0;
+const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
-const core_2 = require("@nestjs/core");
 const roles_decorator_1 = require("./roles.decorator");
 let RolesGuard = class RolesGuard {
     reflector;
@@ -28,18 +28,18 @@ let RolesGuard = class RolesGuard {
         }
         const { user } = context.switchToHttp().getRequest();
         if (!user) {
-            throw new core_1.ForbiddenException('User session not found.');
+            throw new common_1.ForbiddenException('User session not found.');
         }
         const hasRole = requiredRoles.includes(user.role);
         if (!hasRole) {
-            throw new core_1.ForbiddenException('You do not have permission to access this resource.');
+            throw new common_1.ForbiddenException('You do not have permission to access this resource.');
         }
         return true;
     }
 };
 exports.RolesGuard = RolesGuard;
 exports.RolesGuard = RolesGuard = __decorate([
-    (0, core_1.Injectable)(),
-    __metadata("design:paramtypes", [core_2.Reflector])
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [core_1.Reflector])
 ], RolesGuard);
 //# sourceMappingURL=roles.guard.js.map

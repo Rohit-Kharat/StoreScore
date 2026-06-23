@@ -71,7 +71,7 @@ let AuthService = class AuthService {
         if (!user) {
             throw new common_1.UnauthorizedException('Invalid email or password.');
         }
-        const isMatch = await bcrypt.compare(loginDto.password, user.password);
+        const isMatch = await bcrypt.compare(loginDto.password, user.password || '');
         if (!isMatch) {
             throw new common_1.UnauthorizedException('Invalid email or password.');
         }

@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
@@ -26,13 +25,13 @@ const stores_module_1 = require("./stores/stores.module");
 const ratings_module_1 = require("./ratings/ratings.module");
 const seeder_1 = require("./database/seeder");
 let AppModule = class AppModule {
-    connection;
-    constructor(connection) {
-        this.connection = connection;
+    dataSource;
+    constructor(dataSource) {
+        this.dataSource = dataSource;
     }
     async onApplicationBootstrap() {
         try {
-            await (0, seeder_1.seedDatabase)(this.connection);
+            await (0, seeder_1.seedDatabase)(this.dataSource);
         }
         catch (error) {
             console.error('Failed to run database seeder on startup:', error);
@@ -69,6 +68,6 @@ exports.AppModule = AppModule = __decorate([
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Connection !== "undefined" && typeorm_2.Connection) === "function" ? _a : Object])
+    __metadata("design:paramtypes", [typeorm_2.DataSource])
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

@@ -1,2 +1,2 @@
-import { Connection } from 'typeorm';
-export declare function seedDatabase(connection: Connection): Promise<void>;
+import { DataSource } from 'typeorm';
+export declare function seedDatabase(dataSource: DataSource): Promise<void>;

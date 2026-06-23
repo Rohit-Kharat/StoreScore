@@ -86,7 +86,7 @@ let UsersService = class UsersService {
         if (!user) {
             throw new common_1.NotFoundException('User not found.');
         }
-        const isMatch = await bcrypt.compare(updatePasswordDto.oldPassword, user.password);
+        const isMatch = await bcrypt.compare(updatePasswordDto.oldPassword, user.password || '');
         if (!isMatch) {
             throw new common_1.BadRequestException('Incorrect current password.');
         }
@@ -125,7 +125,7 @@ let UsersService = class UsersService {
     async findOneWithStoreRating(id) {
         const user = await this.usersRepository.findOne({
             where: { id },
-            relations: ['store', 'store.ratings'],
+            relations: { store: { ratings: true } },
         });
         if (!user) {
             throw new common_1.NotFoundException('User not found.');

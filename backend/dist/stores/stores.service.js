@@ -55,7 +55,7 @@ let StoresService = class StoresService {
     async findById(id) {
         const store = await this.storesRepository.findOne({
             where: { id },
-            relations: ['owner', 'ratings', 'ratings.user'],
+            relations: { owner: true, ratings: { user: true } },
         });
         if (!store) {
             throw new common_1.NotFoundException('Store not found.');
@@ -65,7 +65,7 @@ let StoresService = class StoresService {
     async findByOwnerId(ownerId) {
         const store = await this.storesRepository.findOne({
             where: { ownerId },
-            relations: ['ratings', 'ratings.user'],
+            relations: { ratings: { user: true } },
         });
         if (!store) {
             throw new common_1.NotFoundException('No store found registered under this owner.');
@@ -101,7 +101,7 @@ let StoresService = class StoresService {
         }
         const stores = await this.storesRepository.find({
             where: whereClause,
-            relations: ['ratings', 'ratings.user', 'owner'],
+            relations: { ratings: { user: true }, owner: true },
         });
         let mappedStores = stores.map((store) => {
             const ratings = store.ratings || [];

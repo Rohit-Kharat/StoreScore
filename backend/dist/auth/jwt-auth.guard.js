@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JwtAuthGuard = void 0;
-const core_1 = require("@nestjs/core");
+const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
 let JwtAuthGuard = class JwtAuthGuard {
     jwtService;
@@ -21,7 +21,7 @@ let JwtAuthGuard = class JwtAuthGuard {
         const request = context.switchToHttp().getRequest();
         const token = this.extractTokenFromHeader(request);
         if (!token) {
-            throw new core_1.UnauthorizedException('Authentication token missing.');
+            throw new common_1.UnauthorizedException('Authentication token missing.');
         }
         try {
             const payload = await this.jwtService.verifyAsync(token, {
@@ -30,7 +30,7 @@ let JwtAuthGuard = class JwtAuthGuard {
             request['user'] = payload;
         }
         catch (err) {
-            throw new core_1.UnauthorizedException('Invalid or expired token.');
+            throw new common_1.UnauthorizedException('Invalid or expired token.');
         }
         return true;
     }
@@ -41,7 +41,7 @@ let JwtAuthGuard = class JwtAuthGuard {
 };
 exports.JwtAuthGuard = JwtAuthGuard;
 exports.JwtAuthGuard = JwtAuthGuard = __decorate([
-    (0, core_1.Injectable)(),
+    (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [jwt_1.JwtService])
 ], JwtAuthGuard);
 //# sourceMappingURL=jwt-auth.guard.js.map

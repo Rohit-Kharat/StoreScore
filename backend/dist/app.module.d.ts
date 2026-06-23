@@ -1,7 +1,7 @@
 import { OnApplicationBootstrap } from '@nestjs/common';
-import { Connection } from 'typeorm';
+import { DataSource } from 'typeorm';
 export declare class AppModule implements OnApplicationBootstrap {
-    private readonly connection;
-    constructor(connection: Connection);
+    private readonly dataSource;
+    constructor(dataSource: DataSource);
     onApplicationBootstrap(): Promise<void>;
 }
