@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
+const config_1 = require("@nestjs/config");
 const auth_service_1 = require("./auth.service");
 const auth_controller_1 = require("./auth.controller");
 const users_module_1 = require("../users/users.module");
@@ -20,10 +21,15 @@ exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
             users_module_1.UsersModule,
-            jwt_1.JwtModule.register({
-                global: true,
-                secret: process.env.JWT_SECRET || 'supersecretjwtkey123!@#',
-                signOptions: { expiresIn: '1d' },
+            config_1.ConfigModule,
+            jwt_1.JwtModule.registerAsync({
+                imports: [config_1.ConfigModule],
+                inject: [config_1.ConfigService],
+                useFactory: async (configService) => ({
+                    global: true,
+                    secret: configService.get('JWT_SECRET') || 'supersecretjwtkey123!@#',
+                    signOptions: { expiresIn: '1d' },
+                }),
             }),
         ],
         controllers: [auth_controller_1.AuthController],

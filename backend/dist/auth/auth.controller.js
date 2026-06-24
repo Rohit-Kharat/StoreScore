@@ -32,9 +32,6 @@ let AuthController = class AuthController {
     async getProfile(req) {
         return req.user;
     }
-    async debugToken(req) {
-        return { authorization: req.headers.authorization };
-    }
 };
 exports.AuthController = AuthController;
 __decorate([
@@ -59,13 +56,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "getProfile", null);
-__decorate([
-    (0, common_1.Get)('debug-token'),
-    __param(0, (0, common_1.Request)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], AuthController.prototype, "debugToken", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

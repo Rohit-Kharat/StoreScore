@@ -25,9 +25,5 @@ export class AuthController {
     return req.user;
   }
 
-  // Debug endpoint (temporary): returns raw Authorization header
-  @Get('debug-token')
-  async debugToken(@Request() req) {
-    return { authorization: req.headers.authorization };
-  }
+  // debug endpoint removed
 }
