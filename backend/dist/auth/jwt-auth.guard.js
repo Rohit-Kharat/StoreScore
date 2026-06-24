@@ -24,12 +24,15 @@ let JwtAuthGuard = class JwtAuthGuard {
             throw new common_1.UnauthorizedException('Authentication token missing.');
         }
         try {
+            console.log('JwtAuthGuard: received token length', token?.length);
+            console.log('JwtAuthGuard: using secret', process.env.JWT_SECRET ? '[REDACTED]' : '[none]');
             const payload = await this.jwtService.verifyAsync(token, {
                 secret: process.env.JWT_SECRET || 'supersecretjwtkey123!@#',
             });
             request['user'] = payload;
         }
         catch (err) {
+            console.error('JwtAuthGuard: verify error', err?.message || err);
             throw new common_1.UnauthorizedException('Invalid or expired token.');
         }
         return true;

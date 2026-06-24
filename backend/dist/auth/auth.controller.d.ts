@@ -19,4 +19,7 @@ export declare class AuthController {
         };
     }>;
     getProfile(req: any): Promise<any>;
+    debugToken(req: any): Promise<{
+        authorization: any;
+    }>;
 }
