@@ -99,11 +99,4 @@ taskkill /PID <pid> /F
 - Backend: NestJS, TypeORM (MySQL), structured into modules: `auth`, `users`, `stores`, `ratings`.
 - Frontend: React + Vite, pages for login, signup, dashboards for roles.
 
-## Next steps / Suggestions
 
-- Add Docker Compose for local DB and app orchestration.
-- Add end-to-end tests covering login and protected routes.
-- Harden password rules and input validation per spec.
-
----
-Created by project assistant to document setup and common fixes.
