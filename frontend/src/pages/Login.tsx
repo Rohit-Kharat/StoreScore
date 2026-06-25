@@ -9,7 +9,7 @@ export const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
-  // Email validation
+  
   const validateEmail = (val: string) => {
     return /\S+@\S+\.\S+/.test(val);
   };
@@ -49,7 +49,7 @@ export const Login: React.FC = () => {
 
       setToast({ message: 'Login successful!', type: 'success' });
       
-      // Allow toast to show briefly before state change redirects
+      
       setTimeout(() => {
         login(data.accessToken, data.user);
       }, 800);
