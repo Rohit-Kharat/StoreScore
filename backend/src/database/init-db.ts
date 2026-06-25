@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import * as path from 'path';
 
 export async function ensureDatabaseExists() {
-  // Load .env if it hasn't been loaded yet
+  
   dotenv.config({ path: path.join(__dirname, '../../.env') });
 
   const host = process.env.DB_HOST || 'localhost';
@@ -25,6 +25,6 @@ export async function ensureDatabaseExists() {
     console.log(`Database "${database}" verified/created successfully.`);
   } catch (error) {
     console.error('Error during database initialization:', error);
-    // We don't crash, let TypeORM fail with a standard error if server is down
+    
   }
 }
