@@ -9,7 +9,7 @@ export async function seedDatabase(dataSource: DataSource) {
   const storeRepository = dataSource.getRepository(Store);
   const ratingRepository = dataSource.getRepository(Rating);
 
-  // Check if seeding is already done
+  
   const userCount = await userRepository.count();
   if (userCount > 0) {
     console.log('Database already has users. Skipping seeder.');
@@ -20,7 +20,7 @@ export async function seedDatabase(dataSource: DataSource) {
 
   const hashedPassword = await bcrypt.hash('Password123!', 10);
 
-  // 1. Seed Users
+  
   const admin = userRepository.create({
     name: 'System Administrator Account', // 30 chars
     email: 'admin@example.com',
@@ -64,13 +64,13 @@ export async function seedDatabase(dataSource: DataSource) {
   await userRepository.save([admin, owner1, owner2, normalUser1, normalUser2]);
   console.log('Seeded 5 users (1 admin, 2 owners, 2 normal users).');
 
-  // Fetch saved owners to make sure we have correct IDs
+  
   const savedOwner1 = await userRepository.findOne({ where: { email: 'owner1@example.com' } });
   const savedOwner2 = await userRepository.findOne({ where: { email: 'owner2@example.com' } });
   const savedUser1 = await userRepository.findOne({ where: { email: 'user1@example.com' } });
   const savedUser2 = await userRepository.findOne({ where: { email: 'user2@example.com' } });
 
-  // 2. Seed Stores
+  
   const store1 = storeRepository.create({
     name: 'Delhi Supermarket Gourmet Store', // 31 chars
     email: 'delhisupermarket@example.com',
@@ -95,11 +95,11 @@ export async function seedDatabase(dataSource: DataSource) {
   await storeRepository.save([store1, store2, store3]);
   console.log('Seeded 3 stores.');
 
-  // Fetch saved stores to link ratings
+  
   const savedStore1 = await storeRepository.findOne({ where: { email: 'delhisupermarket@example.com' } });
   const savedStore2 = await storeRepository.findOne({ where: { email: 'mumbaielectronics@example.com' } });
 
-  // 3. Seed Ratings
+  
   if (savedUser1 && savedUser2 && savedStore1 && savedStore2) {
     const rating1 = ratingRepository.create({
       userId: savedUser1.id,
