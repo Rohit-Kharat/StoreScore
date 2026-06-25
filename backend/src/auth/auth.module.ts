@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
 
-@Global() // Make AuthModule and JwtService globally available for guards
+@Global() 
 @Module({
   imports: [
     UsersModule,
