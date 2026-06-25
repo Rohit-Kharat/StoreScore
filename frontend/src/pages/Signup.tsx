@@ -13,32 +13,31 @@ export const Signup: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
-  // Real-time or submit-time validation rules
+  
   const validateForm = () => {
     const tempErrors: { [key: string]: string } = {};
 
-    // Name: Min 20, Max 60
-    if (!name) {
+      if (!name) {
       tempErrors.name = 'Name is required.';
     } else if (name.length < 20 || name.length > 60) {
       tempErrors.name = `Name must be between 20 and 60 characters (currently ${name.length}).`;
     }
 
-    // Email validation
+    
     if (!email) {
       tempErrors.email = 'Email is required.';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       tempErrors.email = 'Must follow standard email validation rules.';
     }
 
-    // Address: Max 400
+    
     if (!address) {
       tempErrors.address = 'Address is required.';
     } else if (address.length > 400) {
       tempErrors.address = `Address cannot exceed 400 characters (currently ${address.length}).`;
     }
 
-    // Password: 8-16, 1 uppercase, 1 special char
+    
     const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])/;
     if (!password) {
       tempErrors.password = 'Password is required.';
