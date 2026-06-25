@@ -79,7 +79,7 @@ export class UsersService {
       whereClause.role = filters.role;
     }
 
-    // Validate sort field
+    
     const allowedSortFields = ['name', 'email', 'address', 'role', 'createdAt'];
     const field = allowedSortFields.includes(sortField) ? sortField : 'name';
     const order = sortOrder === 'DESC' ? 'DESC' : 'ASC';
@@ -91,7 +91,7 @@ export class UsersService {
       },
     });
 
-    // Remove passwords before returning
+    
     return users.map((u) => {
       delete u.password;
       return u;
@@ -99,7 +99,7 @@ export class UsersService {
   }
 
   async findOneWithStoreRating(id: number): Promise<any> {
-    // We want to fetch user details. If they are a Store Owner, we retrieve their store and calculate the average rating.
+    
     const user = await this.usersRepository.findOne({
       where: { id },
       relations: { store: { ratings: true } },
@@ -125,9 +125,9 @@ export class UsersService {
         averageRating: avgRating,
         totalRatings: ratings.length,
       };
-      result.rating = avgRating; // To satisfy "If the user is a Store Owner, their Rating should also be displayed"
+      result.rating = avgRating; 
     } else if (user.role === UserRole.OWNER) {
-      result.rating = 0; // Store Owner without store assigned yet
+      result.rating = 0; 
     }
 
     return result;
