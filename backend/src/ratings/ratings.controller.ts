@@ -11,7 +11,7 @@ import { UserRole } from '../users/entities/user.entity';
 export class RatingsController {
   constructor(private readonly ratingsService: RatingsService) {}
 
-  // Only normal users can rate stores
+  
   @Post()
   @Roles(UserRole.NORMAL)
   async submitRating(@Request() req, @Body() submitRatingDto: SubmitRatingDto) {
