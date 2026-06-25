@@ -20,16 +20,16 @@ export class RatingsService {
       throw new NotFoundException('Store not found.');
     }
 
-    // Check if rating already exists for this user and store
+    
     let rating = await this.ratingsRepository.findOne({
       where: { userId, storeId: dto.storeId },
     });
 
     if (rating) {
-      // Modify existing rating
+      
       rating.score = dto.score;
     } else {
-      // Submit new rating
+      
       rating = this.ratingsRepository.create({
         userId,
         storeId: dto.storeId,
