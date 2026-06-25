@@ -14,7 +14,7 @@ export class AuthService {
   ) {}
 
   async signUp(signupDto: SignupDto) {
-    // Normal users sign up here
+    
     const userDto = {
       ...signupDto,
       role: UserRole.NORMAL,
