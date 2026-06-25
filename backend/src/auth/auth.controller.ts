@@ -18,12 +18,12 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
 
-  // Handy endpoint to fetch current user session using Bearer token
+
   @UseGuards(JwtAuthGuard)
   @Get('me')
   async getProfile(@Request() req) {
     return req.user;
   }
 
-  // debug endpoint removed
+  
 }
