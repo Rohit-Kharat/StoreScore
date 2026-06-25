@@ -8,19 +8,19 @@ import NormalDashboard from './pages/NormalDashboard';
 import OwnerDashboard from './pages/OwnerDashboard';
 import { Navbar } from './components/Navbar';
 
-// Route for non-logged in users
+
 const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated, user } = useAuth();
   
   if (isAuthenticated && user) {
-    // Redirect already logged-in users to their respective dashboards
+   
     return <Navigate to={`/${user.role}`} replace />;
   }
   
   return <>{children}</>;
 };
 
-// Route for logged-in users, restricted by role
+
 const ProtectedRoute: React.FC<{ children: React.ReactNode; allowedRole: 'admin' | 'normal' | 'owner' }> = ({ children, allowedRole }) => {
   const { isAuthenticated, user } = useAuth();
 
@@ -29,7 +29,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode; allowedRole: 'admin'
   }
 
   if (user.role !== allowedRole) {
-    // Redirect to their own dashboard if they try to access another role's dashboard
+    
     return <Navigate to={`/${user.role}`} replace />;
   }
 
@@ -43,7 +43,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode; allowedRole: 'admin'
   );
 };
 
-// Root route dispatcher
+
 const RootRedirect: React.FC = () => {
   const { isAuthenticated, user } = useAuth();
 
@@ -59,11 +59,11 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          {/* Public Routes */}
+          
           <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
           <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
 
-          {/* Protected Role-Based Dashboards */}
+          
           <Route 
             path="/admin" 
             element={
@@ -89,7 +89,7 @@ function App() {
             } 
           />
 
-          {/* Default Route */}
+          
           <Route path="/" element={<RootRedirect />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
