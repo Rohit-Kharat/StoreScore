@@ -16,7 +16,7 @@ export class Store {
   @Column({ length: 400 })
   address: string;
 
-  // Each store can be owned by a User (role: Store Owner)
+  
   @Column({ nullable: true })
   ownerId: number | null;
 
