@@ -11,14 +11,14 @@ import { UserRole } from './entities/user.entity';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  // Any logged-in user can update their password
+  
   @UseGuards(JwtAuthGuard)
   @Put('update-password')
   async updatePassword(@Request() req, @Body() updatePasswordDto: UpdatePasswordDto) {
     return this.usersService.updatePassword(req.user.id, updatePasswordDto);
   }
 
-  // Admin can create new users of any role directly
+  
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN)
   @Post()
@@ -26,7 +26,7 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  // Admin can list all normal and admin users, support filtering and sorting
+  
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN)
   @Get()
@@ -41,7 +41,7 @@ export class UsersController {
     return this.usersService.findAll({ name, email, address, role }, sortField, sortOrder);
   }
 
-  // Admin can view details of all users
+  
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN)
   @Get(':id')
