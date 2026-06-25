@@ -14,7 +14,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Color Palette */
+  
   --bg-primary: #070a13;
   --bg-secondary: #0d1222;
   --bg-tertiary: #131a30;
@@ -25,16 +25,16 @@
   --accent-amber: #f59e0b;
   --accent-rose: #f43f5e;
   
-  /* Text colors */
+  
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
   
-  /* Border colors */
+  
   --border-light: rgba(255, 255, 255, 0.08);
   --border-focus: rgba(139, 92, 246, 0.4);
   
-  /* Shadows & Blurs */
+  
   --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
   --glass-bg: rgba(15, 22, 42, 0.65);
   --glass-blur: blur(16px);
@@ -46,7 +46,7 @@
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Global Reset */
+  
 * {
   box-sizing: border-box;
   margin: 0;
@@ -92,7 +92,7 @@ button {
   background: var(--text-dim);
 }
 
-/* Animations */
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -108,7 +108,7 @@ button {
   50% { opacity: 0.4; }
 }
 
-/* Common Layout Components */
+
 .app-container {
   min-height: 100vh;
   display: flex;
@@ -139,7 +139,7 @@ button {
   animation: pulseGlow 12s infinite alternate-reverse;
 }
 
-/* Glassmorphism Card System */
+
 .glass-panel {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
@@ -155,7 +155,7 @@ button {
   border-color: rgba(139, 92, 246, 0.2);
 }
 
-/* Typography & Headers */
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -168,7 +168,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-text-fill-color: transparent;
 }
 
-/* Input Fields & Forms */
+
 .form-group {
   margin-bottom: 1.25rem;
   text-align: left;
@@ -215,7 +215,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 4px;
 }
 
-/* Beautiful Premium Buttons */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -273,7 +273,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: none !important;
 }
 
-/* Auth Page layout */
+
 .auth-page {
   display: flex;
   min-height: 100vh;
@@ -312,7 +312,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-muted);
 }
 
-/* Premium Navigation Bar */
+
 .navbar {
   background: rgba(10, 15, 30, 0.7);
   backdrop-filter: var(--glass-blur);
@@ -375,7 +375,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-/* Statistics Grid */
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
