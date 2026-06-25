@@ -36,10 +36,10 @@ export const AdminDashboard: React.FC = () => {
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [loadingStores, setLoadingStores] = useState(true);
 
-  // Active admin section tab
+  
   const [activeSubTab, setActiveSubTab] = useState<'stats' | 'users' | 'stores'>('stats');
 
-  // Filter States - Users
+  
   const [userFilterName, setUserFilterName] = useState('');
   const [userFilterEmail, setUserFilterEmail] = useState('');
   const [userFilterAddress, setUserFilterAddress] = useState('');
@@ -47,19 +47,19 @@ export const AdminDashboard: React.FC = () => {
   const [userSortField, setUserSortField] = useState('name');
   const [userSortOrder, setUserSortOrder] = useState<'ASC' | 'DESC'>('ASC');
 
-  // Filter States - Stores
+  
   const [storeFilterName, setStoreFilterName] = useState('');
   const [storeFilterAddress, setStoreFilterAddress] = useState('');
   const [storeSortField, setStoreSortField] = useState('name');
   const [storeSortOrder, setStoreSortOrder] = useState<'ASC' | 'DESC'>('ASC');
 
-  // Modal States
+  
   const [showAddUserModal, setShowAddUserModal] = useState(false);
   const [showAddStoreModal, setShowAddStoreModal] = useState(false);
   const [detailedUser, setDetailedUser] = useState<any | null>(null);
   const [, setLoadingDetail] = useState(false);
 
-  // Form Fields - Add User
+  
   const [newUserName, setNewUserName] = useState('');
   const [newUserEmail, setNewUserEmail] = useState('');
   const [newUserAddress, setNewUserAddress] = useState('');
@@ -67,26 +67,26 @@ export const AdminDashboard: React.FC = () => {
   const [newUserRole, setNewUserRole] = useState<'admin' | 'normal' | 'owner'>('normal');
   const [userFormErrors, setUserFormErrors] = useState<{ [key: string]: string }>({});
 
-  // Form Fields - Add Store
+  
   const [newStoreName, setNewStoreName] = useState('');
   const [newStoreEmail, setNewStoreEmail] = useState('');
   const [newStoreAddress, setNewStoreAddress] = useState('');
   const [newStoreOwnerId, setNewStoreOwnerId] = useState<string>('');
   const [storeFormErrors, setStoreFormErrors] = useState<{ [key: string]: string }>({});
   
-  // Available Owners for assignment dropdown
+  
   const [allOwners, setAllOwners] = useState<UserListItem[]>([]);
 
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
-  // Password update state (as requested for all roles)
+  
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [passwordLoading, setPasswordLoading] = useState(false);
   const [passwordErrors, setPasswordErrors] = useState('');
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
-  // Fetch functions
+  
   const fetchStats = async () => {
     try {
       const response = await fetch('http://localhost:5000/admin/stats', {
@@ -145,7 +145,7 @@ export const AdminDashboard: React.FC = () => {
     }
   };
 
-  // Fetch owners list for store creation dropdown
+  
   const fetchOwners = async () => {
     try {
       const response = await fetch('http://localhost:5000/users?role=owner', {
@@ -167,7 +167,7 @@ export const AdminDashboard: React.FC = () => {
     }
   }, [token]);
 
-  // Trigger filters on change
+  
   useEffect(() => {
     if (token) fetchUsers();
   }, [userFilterName, userFilterEmail, userFilterAddress, userFilterRole, userSortField, userSortOrder]);
@@ -176,7 +176,7 @@ export const AdminDashboard: React.FC = () => {
     if (token) fetchStores();
   }, [storeFilterName, storeFilterAddress, storeSortField, storeSortOrder]);
 
-  // Sorting handlers
+  
   const handleUserSort = (field: string) => {
     if (userSortField === field) {
       setUserSortOrder(userSortOrder === 'ASC' ? 'DESC' : 'ASC');
@@ -195,7 +195,7 @@ export const AdminDashboard: React.FC = () => {
     }
   };
 
-  // Detailed view of user
+  
   const handleViewUserDetail = async (userId: number) => {
     setLoadingDetail(true);
     try {
@@ -215,7 +215,7 @@ export const AdminDashboard: React.FC = () => {
 
 
   const executeAddUser = async () => {
-    // Helper to send creation request
+    
     try {
       const response = await fetch('http://localhost:5000/users', {
         method: 'POST',
@@ -240,7 +240,7 @@ export const AdminDashboard: React.FC = () => {
       setToast({ message: 'User created successfully!', type: 'success' });
       setShowAddUserModal(false);
       
-      // Reset form
+      
       setNewUserName('');
       setNewUserEmail('');
       setNewUserAddress('');
@@ -250,7 +250,7 @@ export const AdminDashboard: React.FC = () => {
 
       fetchUsers();
       fetchStats();
-      fetchOwners(); // Update owners dropdown list
+      fetchOwners(); 
     } catch (err: any) {
       setToast({ message: err.message, type: 'error' });
     }
@@ -283,7 +283,7 @@ export const AdminDashboard: React.FC = () => {
     executeAddUser();
   };
 
-  // Add Store Validation & Submit
+  
   const handleAddStoreSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const tempErrors: { [key: string]: string } = {};
@@ -339,7 +339,7 @@ export const AdminDashboard: React.FC = () => {
     }
   };
 
-  // Admin password change handler
+  
   const handlePasswordUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     setPasswordErrors('');
@@ -390,7 +390,7 @@ export const AdminDashboard: React.FC = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Sub Tabs */}
+      
       <div className="tabs-header" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', gap: '0.5rem' }}>
           <button className={`tab-btn ${activeSubTab === 'stats' ? 'active' : ''}`} onClick={() => setActiveSubTab('stats')}>
@@ -409,7 +409,7 @@ export const AdminDashboard: React.FC = () => {
         </button>
       </div>
 
-      {/* 1. Dashboard Stats Section */}
+      
       {activeSubTab === 'stats' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           {loadingStats ? (
@@ -458,10 +458,10 @@ export const AdminDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* 2. Manage Users Section */}
+      
       {activeSubTab === 'users' && (
         <div>
-          {/* Actions & Filters */}
+          
           <div className="actions-bar glass-panel" style={{ padding: '1rem', marginBottom: '1.5rem' }}>
             <div className="filters-wrapper">
               <input
@@ -560,10 +560,10 @@ export const AdminDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* 3. Manage Stores Section */}
+
       {activeSubTab === 'stores' && (
         <div>
-          {/* Actions & Filters */}
+          
           <div className="actions-bar glass-panel" style={{ padding: '1rem', marginBottom: '1.5rem' }}>
             <div className="filters-wrapper">
               <input
@@ -634,7 +634,7 @@ export const AdminDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Modal - Add User */}
+      
       {showAddUserModal && (
         <div className="modal-overlay" onClick={() => setShowAddUserModal(false)}>
           <div className="modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
@@ -719,7 +719,7 @@ export const AdminDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Modal - Add Store */}
+      
       {showAddStoreModal && (
         <div className="modal-overlay" onClick={() => setShowAddStoreModal(false)}>
           <div className="modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
@@ -795,7 +795,7 @@ export const AdminDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Modal - User Details (calls GET /users/:id) */}
+
       {detailedUser && (
         <div className="modal-overlay" onClick={() => setDetailedUser(null)}>
           <div className="modal-content glass-panel" style={{ maxWidth: '520px' }} onClick={(e) => e.stopPropagation()}>
@@ -873,7 +873,7 @@ export const AdminDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Modal - Admin Update Password */}
+
       {showPasswordModal && (
         <div className="modal-overlay" onClick={() => setShowPasswordModal(false)}>
           <div className="modal-content glass-panel" style={{ maxWidth: '450px' }} onClick={(e) => e.stopPropagation()}>
