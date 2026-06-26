@@ -28,11 +28,11 @@ export const OwnerDashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   
-  // Sort state
+  
   const [sortField, setSortField] = useState<'name' | 'score' | 'date'>('date');
   const [sortOrder, setSortOrder] = useState<'ASC' | 'DESC'>('DESC');
 
-  // Password state
+  
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [passwordLoading, setPasswordLoading] = useState(false);
@@ -72,11 +72,11 @@ export const OwnerDashboard: React.FC = () => {
       setSortOrder(sortOrder === 'ASC' ? 'DESC' : 'ASC');
     } else {
       setSortField(field);
-      setSortOrder('DESC'); // Default to descending
+      setSortOrder('DESC'); 
     }
   };
 
-  // Get sorted ratings list
+  
   const getSortedRatings = () => {
     if (!store || !store.ratings) return [];
     
@@ -108,7 +108,7 @@ export const OwnerDashboard: React.FC = () => {
     e.preventDefault();
     setPasswordErrors('');
 
-    // Validations
+    
     if (!oldPassword) {
       setPasswordErrors('Current password is required.');
       return;
@@ -244,7 +244,7 @@ export const OwnerDashboard: React.FC = () => {
             )}
           </div>
 
-          {/* Store info sidebar */}
+          
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div className="glass-panel" style={{ borderTop: '4px solid var(--accent-purple)' }}>
               <h4 style={{ marginBottom: '1rem', color: 'var(--accent-purple)' }}>Store Overview</h4>
