@@ -326,7 +326,7 @@ export const NormalDashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Rating Submit Modal */}
+      
       {selectedStore && (
         <div className="modal-overlay" onClick={closeRatingModal}>
           <div className="modal-content glass-panel" onClick={(e) => e.stopPropagation()}>
