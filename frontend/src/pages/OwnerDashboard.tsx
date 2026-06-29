@@ -12,7 +12,7 @@ interface RatingLog {
     email: string;
   };
 }
-
+//working on storeData
 interface StoreData {
   id: number;
   name: string;
